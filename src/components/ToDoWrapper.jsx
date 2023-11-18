@@ -29,9 +29,15 @@ function ToDoWrapper() {
     // Save todos to localStorage whenever the todos state changes
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
+const handleClear = () =>{
+// Clear 'todos' from local storage
+localStorage.removeItem('todos');
+setTodos([]);
 
+}
   return (
-    <div className="container mx-auto bg-slate--400 w-[400px] bg-[#1C1A42] rounded-md mt-4 py-4 px-4">
+    <div className="container mx-auto bg-slate--400 w-[400px] bg-[#1C1A42] relative rounded-md mt-4 py-4 px-4">
+      <div className='absolute top-0 right-0 text-white px-4 py-2 bg-[#855AFD] cursor-pointer' onClick={handleClear}>Clear</div>
       <p className="text-center text-3xl text-white py-4">Rahat ToDo:</p>
       {todos.length < 11 ? (
         <ToDoForm addTodo={addTodo} />
