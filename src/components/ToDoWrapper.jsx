@@ -20,6 +20,9 @@ function ToDoWrapper() {
   const updateTodo = (todoContent, id) => {
     setTodos(todos.map((todo) => (todo.id === id ? { ...todo, task: todoContent, isEditing: !todo.isEditing } : todo)));
   };
+  const updateTodoComplete = (id) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo)));
+  };
 
   const deleteTodo = (id) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
@@ -51,7 +54,7 @@ setTodos([]);
         todo.isEditing ? (
           <EditTodoForm key={index} updateTodo={updateTodo} todo={todo} id={todo.id} />
         ) : (
-          <ToDo key={index} task={todo} deleteTodo={deleteTodo} editTodo={editTodo} />
+          <ToDo key={index} task={todo} isCompleted={todo.isCompleted} updateTodoComplete={updateTodoComplete} deleteTodo={deleteTodo} editTodo={editTodo} />
         )
       )}
     </div>
